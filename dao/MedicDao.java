@@ -18,7 +18,7 @@ public class MedicDao implements DaoInterface<Medic> {
     }
 
     public void create(Medic medic) throws SQLException {
-        String sql = "INSERT INTO demo.MEDICI VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO demo.MEDICI VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, medic.getIdAngajat());
             statement.setString(2, medic.getNume());
@@ -28,6 +28,7 @@ public class MedicDao implements DaoInterface<Medic> {
             statement.setString(6, medic.getGrad());
             statement.setInt(7, medic.getNumarTelefon());
             statement.setInt(8, medic.getAniExperienta());
+            statement.setInt(9, medic.getSalariu());
             statement.executeUpdate();
         }
     }
@@ -46,8 +47,9 @@ public class MedicDao implements DaoInterface<Medic> {
                 medic.setSpecializare(rs.getString("specializare"));
                 medic.setEmail(rs.getString("email"));
                 medic.setGrad(rs.getString("grad"));
-                medic.setNumarTelefon(rs.getInt("numarTelefon"));
-                medic.setAniExperienta(rs.getInt("aniExperienta"));
+                medic.setNumarTelefon(rs.getInt("nr_telefon"));
+                medic.setAniExperienta(rs.getInt("ani_experienta"));
+                medic.setSalariu(rs.getInt("salariu"));
                 return medic;
             }
         } finally {
@@ -59,7 +61,7 @@ public class MedicDao implements DaoInterface<Medic> {
     }
 
     public void update(Medic medic) throws SQLException {
-        String sql = "UPDATE demo.MEDICI SET prenume = ?, specializare = ?, email = ?, grad = ?, numarTelefon = ?, aniExperienta = ? WHERE nume = ?";
+        String sql = "UPDATE demo.MEDICI SET prenume = ?, specializare = ?, email = ?, grad = ?, nr_Telefon = ?, ani_Experienta = ?, salariu=? WHERE nume = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, medic.getPrenume());
             statement.setString(2, medic.getSpecializare());
@@ -67,7 +69,8 @@ public class MedicDao implements DaoInterface<Medic> {
             statement.setString(4, medic.getGrad());
             statement.setInt(5, medic.getNumarTelefon());
             statement.setInt(6, medic.getAniExperienta());
-            statement.setString(7, medic.getNume());
+            statement.setInt(7, medic.getSalariu());
+            statement.setString(8, medic.getNume());
             statement.executeUpdate();
         }
     }
