@@ -6,7 +6,8 @@ CREATE TABLE MEDICI(
                        EMAIL VARCHAR(20),
                        GRAD VARCHAR(20),
                        NR_TELEFON INT(10),
-                       ANI_EXPERIENTA INT(2)
+                       ANI_EXPERIENTA INT(2),
+                       SALARIU INT(5)
 );
 
 CREATE TABLE ASISTENTI(
@@ -16,6 +17,7 @@ CREATE TABLE ASISTENTI(
                           PRENUME VARCHAR(10),
                           EMAIL VARCHAR(20),
                           NR_TELEFON INT(10),
+                          SALARIU INT(5),
                           FOREIGN KEY(ID_MEDIC) REFERENCES MEDICI(ID)
 );
 
@@ -25,7 +27,8 @@ CREATE TABLE FARMACISTI(
                            PRENUME VARCHAR(10),
                            EMAIL VARCHAR(20),
                            NR_TELEFON INT(10),
-                           ANI_EXPERIENTA INT(2)
+                           ANI_EXPERIENTA INT(2),
+                           SALARIU INT(5)
 );
 CREATE TABLE PACIENTI(
                          ID INT(2) PRIMARY KEY,
@@ -33,4 +36,3 @@ CREATE TABLE PACIENTI(
                          PRENUME VARCHAR(10),
                          CNP INT(20)
 );
-SELECT * FROM MEDICI;
