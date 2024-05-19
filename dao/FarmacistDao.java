@@ -19,14 +19,15 @@ public class FarmacistDao implements DaoInterface<Farmacist> {
     }
 
     public void create(Farmacist farmacist) throws SQLException {
-        String sql = "INSERT INTO demo.FARMACISTI (salariu, nume, prenume, email, nrTelefon, aniExperienta) VALUES (?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO demo.FARMACISTI (id, nume, prenume, email, nr_Telefon, ani_Experienta, salariu) VALUES (?, ?, ?, ?, ?, ?, ?);";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, farmacist.getSalariu());
+            statement.setInt(1, farmacist.getIdAngajat());
             statement.setString(2, farmacist.getNume());
             statement.setString(3, farmacist.getPrenume());
             statement.setString(4, farmacist.getEmail());
             statement.setInt(5, farmacist.getNrTelefon());
             statement.setInt(6, farmacist.getAniExperienta());
+            statement.setInt(7, farmacist.getSalariu());
             statement.executeUpdate();
         }
     }
@@ -44,8 +45,8 @@ public class FarmacistDao implements DaoInterface<Farmacist> {
                         rs.getString("nume"),
                         rs.getString("prenume"),
                         rs.getString("email"),
-                        rs.getInt("nrTelefon"),
-                        rs.getInt("aniExperienta")
+                        rs.getInt("nr_Telefon"),
+                        rs.getInt("ani_Experienta")
                 );
                 return farmacist;
             }
@@ -58,7 +59,7 @@ public class FarmacistDao implements DaoInterface<Farmacist> {
     }
 
     public void update(Farmacist farmacist) throws SQLException {
-        String sql = "UPDATE demo.FARMACISTI SET salariu = ?, prenume = ?, email = ?, nrTelefon = ?, aniExperienta = ? WHERE nume = ?";
+        String sql = "UPDATE demo.FARMACISTI SET salariu = ?, prenume = ?, email = ?, nr_Telefon = ?, ani_Experienta = ? WHERE nume = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, farmacist.getSalariu());
             statement.setString(2, farmacist.getPrenume());
