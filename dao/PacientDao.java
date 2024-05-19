@@ -19,11 +19,12 @@ public class PacientDao implements DaoInterface<Pacient> {
     }
 
     public void create(Pacient pacient) throws SQLException {
-        String sql = "INSERT INTO demo.PACIENTI (nume, prenume, cnp) VALUES (?, ?, ?);";
+        String sql = "INSERT INTO demo.PACIENTI (id,nume, prenume, cnp) VALUES (?, ?, ?, ?);";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, pacient.getNume());
-            statement.setString(2, pacient.getPrenume());
-            statement.setLong(3, pacient.getCnp());
+            statement.setInt(1,1);
+            statement.setString(2, pacient.getNume());
+            statement.setString(3, pacient.getPrenume());
+            statement.setLong(4, pacient.getCnp());
             statement.executeUpdate();
         }
     }
