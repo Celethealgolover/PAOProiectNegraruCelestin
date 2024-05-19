@@ -19,13 +19,15 @@ public class AsistentDao implements DaoInterface<Asistent> {
     }
 
     public void create(Asistent asistent) throws SQLException {
-        String sql = "INSERT INTO demo.ASISTENTI (salariu, nume, prenume, email, nr_telefon) VALUES (?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO demo.ASISTENTI ( id, id_medic, nume, prenume, email, nr_telefon, salariu) VALUES (?, ?, ?, ?, ?, ?, ?);";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, asistent.getSalariu());
-            statement.setString(2, asistent.getNume());
-            statement.setString(3, asistent.getPrenume());
-            statement.setString(4, asistent.getEmail());
-            statement.setInt(5, asistent.getNr_telefon());
+            statement.setInt(1, asistent.getIdAngajat());
+            statement.setInt(2, 1);
+            statement.setString(3, asistent.getNume());
+            statement.setString(4, asistent.getPrenume());
+            statement.setString(5, asistent.getEmail());
+            statement.setInt(6, asistent.getNr_telefon());
+            statement.setInt(7, asistent.getSalariu());
             statement.executeUpdate();
         }
     }
